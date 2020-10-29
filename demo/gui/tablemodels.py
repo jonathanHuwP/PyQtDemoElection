@@ -36,6 +36,9 @@ class ConstituancyTableModel(qc.QAbstractTableModel):
     def __init__(self, data):
         """
         store the data
+        
+            Args:
+                data (dict) the data store to be displayed/edited
         """
         super().__init__()
         self._data = data
@@ -129,6 +132,9 @@ class VoteShareTableModel(qc.QAbstractTableModel):
     def __init__(self, data):
         """
         store the data
+        
+            Args:
+                data (dict) the data store to be displayed/edited
         """
         super().__init__()
         self._data = data
