@@ -8,6 +8,19 @@ the structuring of a Python/PyQt project.
 The choice of a dictionary as the base data structure for the project was driven by
 by the use of a dictionary in the project on which we were planning to work.
 
+## Running
+To build the Qt Ui_ files run the script build_ui.py.
+
+>python built_ui.py
+
+To run the unit tests run the script testing/demoelectiontests.py
+
+>python testing/demoelectiontests.py
+
+To run the program run main.py
+
+>python main.py
+
 ## Possible Improvements
 
 Possible improvements are
