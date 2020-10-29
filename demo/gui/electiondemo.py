@@ -65,6 +65,15 @@ class ElectionDemo(qw.QMainWindow, Ui_ElectionDemo):
         
     @qc.pyqtSlot()
     def data_changed(self):
+        """
+        the slot for recieving the dataChanged signal
+        
+        This function directly calls .viewport().update() on the 
+        percentaged table, for a simple project like this it is 
+        probably easier to connect the signal to the table, but 
+        on more complex project using the main as a controller 
+        would make sence.
+        """
         print(">>>> something has changed in the data redisplay all")
         self._partyTableView.viewport().update()
 
