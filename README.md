@@ -6,11 +6,7 @@ This project is the result of a self-teaching exercise in the use of Qt models a
 the structuring of a Python/PyQt project.
 
 The choice of a dictionary as the base data structure for the project was driven by
-by the use of a dictionary in the project we were planning to work.
-
-## Use of Models
-
-## Signalling and Editing
+by the use of a dictionary in the project on which we were planning to work.
 
 ## Possible Improvements
 
