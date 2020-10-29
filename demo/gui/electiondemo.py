@@ -107,7 +107,12 @@ class ElectionDemo(qw.QMainWindow, Ui_ElectionDemo):
         self._constituencyTableView.setModel(self._constituency_model)
         self._constituencyTableView.setStyleSheet("QHeaderView::section { background-color:red }")
         self._constituencyTableView.verticalHeader().hide()
+        
+        # you have the option of makeing editing work by connecting the data changed signal
+        # to a slot in main, which then calls .viewport().update() functions, or directly
+        # connecting the signal to the .viewport().update function, bypassing main.
         self._constituency_model.dataChanged.connect(self.data_changed)
+        #self._constituency_model.dataChanged.connect(self._partyTableView.viewport().update)
 
         # party share of the vote
         self._vote_share_model = VoteShareTableModel(self._data)
