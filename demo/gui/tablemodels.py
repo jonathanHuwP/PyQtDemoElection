@@ -27,6 +27,10 @@ import PyQt5.QtCore as qc
 class ConstituancyTableModel(qc.QAbstractTableModel):
     """
     the data model for the constituancy results table
+    
+    Note: the function names and variable lists are fixed
+    by the need to override the C++ originals and cannot be
+    changed
     """
 
     def __init__(self, data):
@@ -103,7 +107,6 @@ class ConstituancyTableModel(qc.QAbstractTableModel):
         the table, Python 3.6 onward preserve insetion order by default
         """
         if role == qc.Qt.EditRole and value.isnumeric():
-            print("Type of value {}".format(type(value)))
             # convert keys to a list so that they they can be indexed
             keys = [x for x in self._data.keys()]
             key = keys[index.row()]
@@ -117,6 +120,10 @@ class ConstituancyTableModel(qc.QAbstractTableModel):
 class VoteShareTableModel(qc.QAbstractTableModel):
     """
     the data model for the party share of the votes
+    
+    Note: the function names and variable lists are fixed
+    by the need to override the C++ originals and cannot be
+    changed
     """
 
     def __init__(self, data):
