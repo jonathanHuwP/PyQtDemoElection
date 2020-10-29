@@ -18,6 +18,7 @@ This work was funded by Joanna Leng's EPSRC funded RSE Fellowship (EP/R025819/1)
 @author: j.h.pickering@leeds.ac.uk and j.leng@leeds.ac.uk
 """
 import csv
+from demo.datastructs.electionresults import ElectionResults
 
 def read_file(file_name):
     """
@@ -32,7 +33,7 @@ def read_file(file_name):
         Throws:
             IOError if file cannot be opened
     """
-    results = dict()
+    results = ElectionResults()
 
     with open(file_name, 'r') as csv_file:
         csv_reader = csv.reader(csv_file)

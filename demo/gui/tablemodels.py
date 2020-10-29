@@ -142,8 +142,6 @@ class VoteShareTableModel(qc.QAbstractTableModel):
     def data(self, index, role):
         """
         getter for data and display features
-        having the calculation carried out in this function, would
-        usually be regarded as very bad practice
 
             Args:
                 index (QModelIndex) the location of the data row(), column()
@@ -153,17 +151,8 @@ class VoteShareTableModel(qc.QAbstractTableModel):
                 required (QVariant) data for the cell
         """
         if role == qc.Qt.DisplayRole:
-            total = 0
-            votes = [0, 0, 0]
-            for key in self._data.keys():
-                for i in range(0,3):
-                    vote = int(self._data[key][i])
-                    votes[i] += vote
-                    total += vote
-
-            percentages = [x / total for x in votes]
-
-            item = "{:.2f}".format(percentages[index.row()]*100)
+            percentages = self._data.party_percentages()
+            item = "{:.2f}".format(percentages[index.row()])
             return qc.QVariant(item)
 
         return qc.QVariant()

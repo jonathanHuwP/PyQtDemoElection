@@ -17,5 +17,52 @@ This work was funded by Joanna Leng's EPSRC funded RSE Fellowship (EP/R025819/1)
 @copyright 2020
 @author: j.h.pickering@leeds.ac.uk and j.leng@leeds.ac.uk
 """
+# set up linting conditions
+# pylint: disable = too-many-public-methods
+
+import sys
+import pathlib
+import unittest
+
+sys.path.insert(0, str(pathlib.Path.cwd()))
+from demo.datastructs.electionresults import ElectionResults
+
+## class for unit tests of the ImagePoints
+class TestElectionResults(unittest.TestCase):
+    """test haness for the results class"""
+
+    def setUp(self):
+        """make test case"""
+        self._results = ElectionResults()
+        self._results["Somewhere"] = [10, 5, 0]
+        self._results["Somewhere Else"] = [0, 10, 5]
+        self._results["Elsewhare"] = [5, 0, 10]
+
+    def tearDown(self):
+        """delete test case"""
+        self._results = None
+
+    def test_results(self):
+        """
+        test the percentage of the vote function
+        """
+        percentages = self._results.party_percentages()
+
+        self.assertAlmostEqual(percentages[0],
+                               33.3333,
+                               msg="percentage of first party failed",
+                               delta=0.0001)
+
+        self.assertAlmostEqual(percentages[1],
+                               33.3333,
+                               msg="percentage of second party failed",
+                               delta=0.0001)
+
+        self.assertAlmostEqual(percentages[2],
+                               33.3333,
+                               msg="percentage of third party failed",
+                               delta=0.0001)
+
 if __name__ == "__main__":
-    print("Unit Tests for DemoElction")
+    print("Unit Tests for DemoElection")
+    unittest.main()
