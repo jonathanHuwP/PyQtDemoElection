@@ -24,7 +24,6 @@ This work was funded by Joanna Leng's EPSRC funded RSE Fellowship (EP/R025819/1)
 import os
 
 import PyQt5.QtWidgets as qw
-import PyQt5.QtGui as qg
 import PyQt5.QtCore as qc
 
 from demo.io.csvio import read_file, write_file
@@ -62,16 +61,16 @@ class ElectionDemo(qw.QMainWindow, Ui_ElectionDemo):
 
         ## handle for the national vote share data model
         self._vote_share_model = None
-        
+
     @qc.pyqtSlot()
     def data_changed(self):
         """
         the slot for recieving the dataChanged signal
-        
-        This function directly calls .viewport().update() on the 
-        percentaged table, for a simple project like this it is 
-        probably easier to connect the signal to the table, but 
-        on more complex project using the main as a controller 
+
+        This function directly calls .viewport().update() on the
+        percentaged table, for a simple project like this it is
+        probably easier to connect the signal to the table, but
+        on more complex project using the main as a controller
         would make sence.
         """
         print(">>>> something has changed in the data redisplay all")
@@ -116,7 +115,7 @@ class ElectionDemo(qw.QMainWindow, Ui_ElectionDemo):
         self._constituencyTableView.setModel(self._constituency_model)
         self._constituencyTableView.setStyleSheet("QHeaderView::section { background-color:red }")
         self._constituencyTableView.verticalHeader().hide()
-        
+
         # you have the option of makeing editing work by connecting the data changed signal
         # to a slot in main, which then calls .viewport().update() functions, or directly
         # connecting the signal to the .viewport().update function, bypassing main.

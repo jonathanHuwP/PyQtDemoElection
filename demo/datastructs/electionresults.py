@@ -20,18 +20,10 @@ This work was funded by Joanna Leng's EPSRC funded RSE Fellowship (EP/R025819/1)
 
 class ElectionResults(dict):
     """
-    a dictionary for the elections results with a function 
+    a dictionary for the elections results with a function
     to calculate the party percentages of the total vote
     """
-    def __init__(self):
-        """
-        initalize the class
 
-            Returns:
-                None
-        """
-        super().__init__()
-        
     def party_percentages(self):
         """
         calculate the party percentages of the vote
@@ -48,6 +40,5 @@ class ElectionResults(dict):
                 total += vote
 
         percentages = [(x / total)*100.0 for x in votes]
-        
+
         return percentages
-        

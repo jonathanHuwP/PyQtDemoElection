@@ -18,7 +18,16 @@ This work was funded by Joanna Leng's EPSRC funded RSE Fellowship (EP/R025819/1)
 @author: j.h.pickering@leeds.ac.uk and j.leng@leeds.ac.uk
 """
 # set up linting conditions
-# pylint: disable = too-many-public-methods
+#
+# following required as Qt overrides must follow C++
+# pylint: disable = invalid-name
+# pylint: disable = no-self-use
+# pylint: disable = unused-argument
+#
+# required as pylint cannot distinguish dict_keys from a list
+# pylint: disable = unnecessary-comprehension
+#
+# required to avoid errors on the Qt imports
 # pylint: disable = c-extension-no-member
 
 import PyQt5.QtGui as qg
@@ -27,7 +36,7 @@ import PyQt5.QtCore as qc
 class ConstituancyTableModel(qc.QAbstractTableModel):
     """
     the data model for the constituancy results table
-    
+
     Note: the function names and variable lists are fixed
     by the need to override the C++ originals and cannot be
     changed
@@ -36,7 +45,7 @@ class ConstituancyTableModel(qc.QAbstractTableModel):
     def __init__(self, data):
         """
         store the data
-        
+
             Args:
                 data (dict) the data store to be displayed/edited
         """
@@ -93,20 +102,20 @@ class ConstituancyTableModel(qc.QAbstractTableModel):
     def columnCount(self, index):
         """the number of columns in the table"""
         return 4
-        
+
     def flags(self, index):
         """
         return that the numeric columns are editable
         """
         if index.column() == 0:
             return qc.Qt.ItemIsEnabled|qc.Qt.ItemIsSelectable
-        else:
-            return qc.Qt.ItemIsEnabled|qc.Qt.ItemIsSelectable|qc.Qt.ItemIsEditable
-            
+
+        return qc.Qt.ItemIsEnabled|qc.Qt.ItemIsSelectable|qc.Qt.ItemIsEditable
+
     def setData(self, index, value, role):
         """
         allow the new value to replace the old in the data source, this method will
-        not work if the order of the data is different between the dictionary and 
+        not work if the order of the data is different between the dictionary and
         the table, Python 3.6 onward preserve insetion order by default
         """
         if role == qc.Qt.EditRole and value.isnumeric():
@@ -114,16 +123,16 @@ class ConstituancyTableModel(qc.QAbstractTableModel):
             keys = [x for x in self._data.keys()]
             key = keys[index.row()]
             self._data[key][index.column()-1] = value
-            
+
             self.dataChanged.emit(index, index)
             return True
-            
+
         return False
 
 class VoteShareTableModel(qc.QAbstractTableModel):
     """
     the data model for the party share of the votes
-    
+
     Note: the function names and variable lists are fixed
     by the need to override the C++ originals and cannot be
     changed
@@ -132,7 +141,7 @@ class VoteShareTableModel(qc.QAbstractTableModel):
     def __init__(self, data):
         """
         store the data
-        
+
             Args:
                 data (dict) the data store to be displayed/edited
         """
@@ -166,8 +175,8 @@ class VoteShareTableModel(qc.QAbstractTableModel):
         if role == qc.Qt.DisplayRole:
             if orientation == qc.Qt.Vertical:
                 return qc.QVariant(headers[section])
-            elif orientation == qc.Qt.Horizontal:
-                return qc.QVariant("Vote (%)")
+
+            return qc.QVariant("Vote (%)")
 
         return qc.QVariant()
 
