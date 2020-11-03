@@ -1,6 +1,6 @@
 ## -*- coding: utf-8 -*-
 """
-Created on Tue 27 Oct 2020
+Created on Tue 03 Nov 2020
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use
 this file except in compliance with the License. You may obtain a copy of the
@@ -18,15 +18,21 @@ This work was funded by Joanna Leng's EPSRC funded RSE Fellowship (EP/R025819/1)
 @author: j.h.pickering@leeds.ac.uk and j.leng@leeds.ac.uk
 """
 # set up linting conditions
+# pylint: disable = too-few-public-methods
 # pylint: disable = c-extension-no-member
 
-import sys
 import PyQt5.QtWidgets as qw
 
 from demo.gui.electiondemo import ElectionDemo
 
-if __name__ == "__main__":
-    app = qw.QApplication(sys.argv)
-    window = ElectionDemo()
-    window.show()
-    sys.exit(app.exec_())
+class ElectionDemoApp(qw.QApplication):
+    """top level application"""
+
+    def __init__(self, args):
+        """
+        initialize a main window and start event loop
+        """
+        super().__init__(args)
+        window = ElectionDemo()
+        window.show()
+        self.exec_()    # enter event loop
