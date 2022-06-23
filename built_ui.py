@@ -41,7 +41,7 @@ def build(module_name):
 
     # in the case of failure CPython will print its own error message
     if os.system(command.format(ui_file, py_file)) == 0:
-        print("made Ui_{}.py".format(module_name))
+        print(f"made Ui_{module_name}.py")
 
 if __name__ == "__main__":
     for module in modules:

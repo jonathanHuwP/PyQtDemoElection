@@ -33,9 +33,9 @@ class ElectionResults(dict):
         """
         total = 0
         votes = [0, 0, 0]
-        for key in self.keys():
-            for i in range(0,3):
-                vote = int(self[key][i])
+        for result in self.values():
+            for i, count in enumerate(result):
+                vote = int(count)
                 votes[i] += vote
                 total += vote
 
