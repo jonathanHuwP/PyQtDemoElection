@@ -21,24 +21,24 @@ import os
 # a list of the modules that the package requires
 modules = ["electiondemo"]
 
-# relative path to the Qt .ui files
-ui_path = "./resources/designer_ui/{}.ui"
+# relative path to the Qt .ui file
+UI_PATH = "./resources/designer_ui/"
 
 # relative path to the python source files
-py_path = "./demo/gui/Ui_{}.py"
+PY_PATH = "./demo/gui/Ui_"
 
 def build(module_name):
     """
     run pyuic5 on a single module
-    
+
         Args:
             module_name (string) the module name with no decoration or postfix
     """
-    ui_file = ui_path.format(module_name)
-    py_file = py_path.format(module_name)
-    
+    ui_file = f"{UI_PATH}{module_name}.ui"
+    py_file = f"{PY_PATH}{module_name}.py"
+
     command = "pyuic5 {} -o {}"
-    
+
     # in the case of failure CPython will print its own error message
     if os.system(command.format(ui_file, py_file)) == 0:
         print("made Ui_{}.py".format(module_name))
